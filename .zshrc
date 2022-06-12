@@ -1,32 +1,18 @@
-#################################  HISTORY  #################################
-# history
-HISTFILE=$HOME/.zsh_history # 履歴を保存するファイル
-HISTSIZE=100000             # メモリ上に保存する履歴のサイズ
-SAVEHIST=1000000            # 上述のファイルに保存する履歴のサイズ
-
-# share .zshhistory
-setopt inc_append_history   # 実行時に履歴をファイルに追加していく
-setopt share_history        # 履歴を他のシェルとリアルタイム共有する
-
-#################################  COMPLEMENT  #################################
-# enable completion
-autoload -Uz compinit && compinit
-
-# 補完候補をそのまま探す -> 小文字を大文字に変えて探す -> 大文字を小文字に変えて探す
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
-
-### 補完方法毎にグループ化する。
-zstyle ':completion:*' format '%B%F{blue}%d%f%b'
-zstyle ':completion:*' group-name ''
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 
-### 補完侯補をメニューから選択する。
-### select=2: 補完候補を一覧から選択する。補完候補が2つ以上なければすぐに補完する。
-zstyle ':completion:*:default' menu select=2
-#################################  OTHERS  #################################
-# automatically change directory when dir name is typed
-setopt auto_cd
+# 各種設定ファイルの読み込み
+SCRIPT_DIR=$HOME/dotfiles
+source /opt/homebrew/opt/zinit/zinit.zsh
+source $SCRIPT_DIR/zsh/path.zsh
+source $SCRIPT_DIR/zsh/plugins.zsh
+source $SCRIPT_DIR/zsh/config.zsh
+source $SCRIPT_DIR/zsh/alias.zsh
 
-# disable ctrl+s, ctrl+q
-setopt no_flow_control
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f $SCRIPT_DIR/zsh/.p10k.zsh ]] || source $SCRIPT_DIR/zsh/.p10k.zsh
