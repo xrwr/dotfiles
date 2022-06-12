@@ -1,4 +1,5 @@
 export PATH="/opt/homebrew/bin:$PATH"
+export LANG=ja_JP.UTF-8
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

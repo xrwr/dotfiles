@@ -5,3 +5,7 @@ zinit light zdharma/fast-syntax-highlighting
 
 # サジェスト
 zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+
+# peco
+zinit light mollifier/anyframe
