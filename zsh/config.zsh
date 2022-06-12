@@ -10,14 +10,15 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 
 #################################  OTHERS  #################################
+setopt auto_cd
 
 
 # brewをアーキテクチャ毎に切り分ける
-if [[ $ARCH == arm64 ]]; then
-    echo "Current Architecture: $ARCH"
+if [[ $(uname -m) == arm64 ]]; then
+    echo "Current Architecture: $(uname -m)"
 	eval $(/opt/homebrew/bin/brew shellenv)
-elif [[ $ARCH == x86_64 ]]; then
-    echo "Current Architecture: $ARCH"
+elif [[ $(uname -m) == x86_64 ]]; then
+    echo "Current Architecture: $(uname -m)"
 	eval $(/usr/local/bin/brew shellenv)
 fi
 
