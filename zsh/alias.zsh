@@ -4,7 +4,7 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias arm="exec arch -arch arm64e /bin/zsh --login"
 alias x64="exec arch -arch x86_64 /bin/zsh --login"
-alias python="conda activate my_env; python"
+alias python="/Users/ren/miniforge3/envs/my_env/bin/python3"
 
 ########### peco ##############
 # pecoでhistory検索 -> control + r
