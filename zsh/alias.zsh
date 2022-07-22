@@ -3,9 +3,9 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias cat="bat"
+alias sed="gsed"
 alias arm="exec arch -arch arm64e /bin/zsh --login"
 alias x64="exec arch -arch x86_64 /bin/zsh --login"
-alias python="/Users/ren/miniforge3/envs/my_env/bin/python3"
 
 ########### peco ##############
 # pecoでhistory検索 -> control + r
