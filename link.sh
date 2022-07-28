@@ -1,6 +1,6 @@
 #!/bin/bash
 # 配置したい設定ファイル
-dotfiles=(.zshrc .latexmkrc .vimrc .condarc)
+dotfiles=(.zshrc .latexmkrc .vimrc)
 
 # 設定ファイルのシンボリックリンクを
 # ホームディレクトリ直下に作成する
