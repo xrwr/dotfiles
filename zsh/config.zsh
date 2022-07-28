@@ -12,6 +12,8 @@ setopt hist_reduce_blanks
 #################################  OTHERS  #################################
 setopt auto_cd
 
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # brewをアーキテクチャ毎に切り分ける
 if [[ $(uname -m) == arm64 ]]; then
