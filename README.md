@@ -3,6 +3,6 @@
 ## Installation
 
 ```bash
-chmod +x deploy.sh
-./deploy.sh
+chmod +x ~/link.sh
+source ~/link.sh
 ```
