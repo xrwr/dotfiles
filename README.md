@@ -3,6 +3,6 @@
 ## Installation
 
 ```bash
-chmod +x ~/link.sh
-source ~/link.sh
+chmod +x ~/dotfiles/link.sh
+source ~/dotfiles/link.sh
 ```
