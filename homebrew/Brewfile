@@ -11,6 +11,7 @@ brew "pyenv"
 brew "tree"
 brew "wget"
 brew "zinit"
+brew "pandoc"
 
 cask "karabiner-elements"
 cask "google-chrome"
