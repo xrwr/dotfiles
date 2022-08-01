@@ -1,0 +1,37 @@
+\usepackage{graphicx, bm, color, hyperref, txfonts, caption, physics, xltxtra, amsmath, amssymb, mathrsfs, comment, tikz}
+% \usepackage[colorgrid,gridunit=pt,texcoord]{eso-pic}
+% \mathtoolsset{showonlyrefs=true} % 参照したラベルのみ番号を付ける 07/07/18追加
+\usepackage[version=4]{mhchem} %化学式
+\usepackage[absolute,overlay]{textpos}
+
+\usepackage{tcolorbox} % 箱 2020/08/28追加
+\tcbuselibrary{breakable}
+\newtcolorbox{mybox}[2][]{colbacktitle=orange,
+  colback=orange!30!white,colframe=orange,
+  title={#2},fonttitle=\bfseries\gtfamily,#1}
+
+\def\seireki{ % 日付を西暦表示 (20xx/yy/zz) に。[11] を元に作成
+  \the\year/
+  \ifnum\month<10 0\fi\the\month/
+  \ifnum\day<10 0\fi\the\day}
+
+% オリジナルマクロ
+\newcommand{\setz}{\mathbb{Z}}
+\newcommand{\setn}{\mathbb{N}}
+\newcommand{\setc}{\mathbb{C}}
+\newcommand{\setq}{\mathbb{Q}}
+\newcommand{\setr}{\mathbb{R}}
+\newcommand{\pr}{^{\prime}}
+
+\captionsetup{font=scriptsize}
+\renewcommand{\figurename}{Fig}
+\setmainfont{ヒラギノ角ゴシック W3}
+\setsansfont{ヒラギノ角ゴシック W3}
+\setmonofont{ヒラギノ角ゴシック W3}
+\setromanfont{Times New Roman}
+\XeTeXlinebreaklocale ``ja''
+\usetheme[progressbar=frametitle]{metropolis}
+\usefonttheme{professionalfonts}
+\useinnertheme{rectangles}
+\useoutertheme{default}
+\usecolortheme{orchid}

@@ -1,0 +1,36 @@
+\usepackage[dvipdfmx]{graphicx, hyperref, xcolor} % uplatex用の設定を使う場合
+\usepackage{amsmath, amssymb, amsfonts, mathtools, amsthm, bm, here, tikz, comment, mathrsfs, pxrubrica, physics, subfigure, url}
+
+% \mathtoolsset{showonlyrefs=true}
+% breqnはrevtexのaffiliationと干渉するっぽい
+\usepackage[version=4]{mhchem}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\newtcolorbox{mybox}[2][]{colbacktitle=orange,
+  colback=orange!30!white,colframe=orange,
+  title={#2},fonttitle=\bfseries\gtfamily,#1}
+
+\usepackage{listings}
+\lstset{
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\smallitshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=3zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1zw,
+  lineskip=-0.5ex
+}
+
+\def\seireki{
+  \the\year/
+  \ifnum\month<10 0\fi\the\month/
+  \ifnum\day<10 0\fi\the\day}
