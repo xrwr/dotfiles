@@ -17,6 +17,7 @@ brew bundle
 
 ### Python
 ```bash
+pyenv install 3.10.5
+pyenv global 3.10.5
 pip install -r ~/dotfiles/python/requirements.txt
-
 ```
