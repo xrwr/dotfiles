@@ -9,28 +9,5 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 
-#################################  OTHERS  #################################
-setopt auto_cd
-
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# brewをアーキテクチャ毎に切り分ける
-if [[ $(uname -m) == arm64 ]]; then
-    echo "Current Architecture: $(uname -m)"
-	eval $(/opt/homebrew/bin/brew shellenv)
-elif [[ $(uname -m) == x86_64 ]]; then
-    echo "Current Architecture: $(uname -m)"
-	eval $(/usr/local/bin/brew shellenv)
-fi
-
-# cdr, add-zsh-hook を有効にする
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
-
-# cdr の設定
-zstyle ':completion:*' recent-dirs-insert both
-zstyle ':chpwd:*' recent-dirs-max 500
-zstyle ':chpwd:*' recent-dirs-default true
-zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
-zstyle ':chpwd:*' recent-dirs-pushd true
+# z
+. `brew --prefix`/etc/profile.d/z.sh
