@@ -33,7 +33,6 @@ source $SCRIPT_DIR/zsh/path.zsh
 source $SCRIPT_DIR/zsh/plugins.zsh
 source $SCRIPT_DIR/zsh/config.zsh
 source $SCRIPT_DIR/zsh/alias.zsh
-# source $SCRIPT_DIR/zsh/peco.zsh
 source $SCRIPT_DIR/zsh/fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/p10k.zsh.
