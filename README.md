@@ -1,23 +1,9 @@
-# dotfiles
+# 🧩 dotfiles
 
-## Installation
-
-### symbolic link
+## Setup
 ```bash
-git clone git@github.com:st-8/dotfiles.git
-chmod +x ~/dotfiles/link.sh
-source ~/dotfiles/link.sh
-```
-
-### Homebrew
-```bash
-cd ~/dotfiles/homebrew
-brew bundle
-```
-
-### Python
-```bash
-pyenv install 3.10.5
-pyenv global 3.10.5
-pip install -r ~/dotfiles/python/requirements.txt
+git clone https://github.com/xrwr/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./install.sh
+stow */
 ```

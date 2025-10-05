@@ -1,0 +1,52 @@
+[include]
+    path = ~/.gitconfig.local
+
+[core]
+    quotepath = false
+
+[init]
+    defaultBranch = main
+
+[color]
+    ui = true
+
+[pull]
+    rebase = false
+
+[push]
+    default = current
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = Monokai Extended
+    navigate = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = dimmed-zebra
+
+[alias]
+    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+    co = checkout
+    cm = commit
+    br = branch
+    st = status
+    br = branch
+    lg = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h%Creset %C(yellow)%ad%Creset %Cblue%an%Creset %Cred%d%Creset %s'
+    difff = diff --word-diff
+
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
