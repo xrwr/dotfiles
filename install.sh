@@ -9,7 +9,7 @@ $SUDO apt-get update
 # timezone
 export DEBIAN_FRONTEND=noninteractive
 export TZ=Asia/Tokyo
-ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
+$SUDO ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
 $SUDO apt-get install -y tzdata >/dev/null 2>&1 || true
 $SUDO apt-get install -y git curl zsh xsel neovim wget pkg-config libssl-dev build-essential stow
 
