@@ -41,7 +41,7 @@ alias cd=cdls
 source <(fzf --zsh)
 
 # Ctrl+d で zoxide のインタラクティブモードを起動
-bindkey -s '^d' 'zi\n'
+bindkey -s '^[d' 'zi\n'
 
 # Ctrl+f で履歴検索
 function fzf-select-history() {
@@ -50,5 +50,4 @@ function fzf-select-history() {
     zle reset-prompt
 }
 zle -N fzf-select-history
-bindkey '^f' fzf-select-history
-
+bindkey '^[f' fzf-select-history
