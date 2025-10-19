@@ -11,7 +11,7 @@ export DEBIAN_FRONTEND=noninteractive
 export TZ=Asia/Tokyo
 $SUDO ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
 $SUDO apt-get install -y tzdata >/dev/null 2>&1 || true
-$SUDO apt-get install -y git curl zsh xsel neovim wget pkg-config libssl-dev build-essential stow
+$SUDO apt-get install -y git curl zsh xsel neovim wget pkg-config libssl-dev build-essential stow unzip
 
 # rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
