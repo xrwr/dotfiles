@@ -1,6 +1,6 @@
-export PATH="/Users/ren/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 export PATH="/usr/local/cuda/bin:$PATH"
-export PATH="$PATH:/home/ren/.lmstudio/bin"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 export LANG=ja_JP.UTF-8
 
