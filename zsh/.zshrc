@@ -28,7 +28,11 @@ alias cat="bat"
 alias vim="nvim"
 alias grep="rg"
 alias du="dust"
-alias pbcopy='xsel --clipboard --input'
+if [[ "$(uname)" != "Darwin" ]]; then
+    alias pbcopy='xsel --clipboard --input'
+    alias pbpaste='xsel --clipboard --output'
+    alias open='explorer.exe'
+fi
 
 function cdls() {
     \cd $1;
