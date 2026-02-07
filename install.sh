@@ -18,7 +18,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
 
 # rust tools
-for p in bat eza ripgrep zoxide du-dust starship sheldon git-delta; do
+for p in bat eza ripgrep zoxide du-dust starship sheldon git-delta zellij cargo-update; do
     cargo install --locked $p
 done
 
