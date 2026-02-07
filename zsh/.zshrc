@@ -44,14 +44,28 @@ alias cd=cdls
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source <(fzf --zsh)
 
-# Ctrl+d で zoxide のインタラクティブモードを起動
+# Alt + d で zoxide のインタラクティブモードを起動
 bindkey -s '^[d' 'zi\n'
 
-# Ctrl+f で履歴検索
+# Alt + c で履歴検索
 function fzf-select-history() {
     BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse)
     CURSOR=$#BUFFER
     zle reset-prompt
 }
 zle -N fzf-select-history
-bindkey '^[f' fzf-select-history
+bindkey '^[c' fzf-select-history
+
+# Zellij auto attach
+if [[ "$TERM_PROGRAM" == 'vscode' ]]; then
+  if [[ -z "$ZELLIJ" ]]; then
+    zellij attach --create "$(basename "$(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")")"
+    exit
+  fi
+else
+  if [[ -z "$VSCODE_RESOLVING_ENVIRONMENT" ]]; then
+    # export ZELLIJ_AUTO_ATTACH=true
+    export ZELLIJ_AUTO_EXIT=true
+    eval "$(zellij setup --generate-auto-start zsh)"
+  fi
+fi
