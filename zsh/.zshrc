@@ -64,10 +64,8 @@ if [[ "$TERM_PROGRAM" == 'vscode' ]]; then
     zellij attach --create "$(basename "$(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")")"
     exit
   fi
-else
-  if [[ -z "$VSCODE_RESOLVING_ENVIRONMENT" ]]; then
-    # export ZELLIJ_AUTO_ATTACH=true
-    export ZELLIJ_AUTO_EXIT=true
-    eval "$(zellij setup --generate-auto-start zsh)"
-  fi
 fi
+
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit
+compinit
