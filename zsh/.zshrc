@@ -58,13 +58,25 @@ function fzf-select-history() {
 zle -N fzf-select-history
 bindkey '^[c' fzf-select-history
 
-# Zellij auto attach
-if [[ "$TERM_PROGRAM" == 'vscode' ]]; then
-  if [[ -z "$ZELLIJ" ]]; then
-    zellij attach --create "$(basename "$(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")")"
-    exit
-  fi
-fi
+# zellij completion
+_zellij() {
+  local context state
+  typeset -A opt_args
+
+  _arguments -C \
+    '1:subcommand:(attach a list-sessions ls kill-session k)' \
+    '2:session:_zellij_session_names'
+
+  return 0
+}
+
+_zellij_session_names() {
+  local -a sessions
+  sessions=(${(f)"$(zellij list-sessions --short 2>/dev/null)"})
+  _describe 'zellij sessions' sessions
+}
+
+compdef _zellij zellij
 
 fpath=(~/.zfunc $fpath)
 autoload -Uz compinit
