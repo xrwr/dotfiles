@@ -1,8 +1,11 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.lmstudio/bin"
 export PATH="/usr/local/cuda/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH:-}"
 export LANG=ja_JP.UTF-8
+
+# ここから下は対話シェル用の設定に限定する
+[[ -o interactive ]] || return 0
 
 # zsh history settings
 HISTFILE=$HOME/.zsh_history # 履歴を保存するファイル
@@ -15,9 +18,15 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
-eval "$(sheldon source)"
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init zsh)"
+fi
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
+if command -v sheldon >/dev/null 2>&1; then
+    eval "$(sheldon source)"
+fi
 
 # aliases and functions
 alias ls="eza -F --icons"
@@ -37,26 +46,33 @@ if [[ "$(uname)" != "Darwin" ]]; then
 fi
 
 function cdls() {
-    \cd $1;
-    ls;
+    builtin cd "$@" && ls
 }
 alias cd=cdls
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(fzf --zsh)
+if [[ -t 0 && -o zle ]]; then
+    # fzf
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    if command -v fzf >/dev/null 2>&1; then
+        source <(fzf --zsh)
+    fi
 
-# Alt + d で zoxide のインタラクティブモードを起動
-bindkey -s '^[d' 'zi\n'
+    # Alt + d で zoxide のインタラクティブモードを起動
+    bindkey -s '^[d' 'zi\n'
 
-# Alt + c で履歴検索
-function fzf-select-history() {
-    BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse)
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-zle -N fzf-select-history
-bindkey '^[c' fzf-select-history
+    # Alt + c で履歴検索
+    function fzf-select-history() {
+        BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse)
+        CURSOR=$#BUFFER
+        zle reset-prompt
+    }
+    zle -N fzf-select-history
+    bindkey '^[c' fzf-select-history
+fi
+
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit
+compinit
 
 # zellij completion
 _zellij() {
@@ -76,8 +92,14 @@ _zellij_session_names() {
   _describe 'zellij sessions' sessions
 }
 
-compdef _zellij zellij
+zellij() {
+  if [[ $# -eq 0 ]]; then
+    local session_name
+    session_name="${PWD##*/}"
+    command zellij attach --create "$session_name"
+  else
+    command zellij "$@"
+  fi
+}
 
-fpath=(~/.zfunc $fpath)
-autoload -Uz compinit
-compinit
+compdef _zellij zellij

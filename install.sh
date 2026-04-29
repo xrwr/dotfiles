@@ -23,7 +23,11 @@ for p in bat eza ripgrep zoxide du-dust starship sheldon git-delta zellij cargo-
 done
 
 # fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+if [ -d "$HOME/.fzf/.git" ]; then
+    git -C "$HOME/.fzf" pull --ff-only
+else
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+fi
 ~/.fzf/install --all
 
 # uv
